@@ -16,6 +16,7 @@ a la capçalera de totes les classes cal posar almenys aquests valors:
 - Nom de l'autor
 - Data
 - Versió 
+
 Els blocs de comentaris que genereu han de ser amb l'estructura que heu anat fent a Programació
 
 ## Aclariments sobre el codi
@@ -32,6 +33,10 @@ Getters: De l'Anglès Get, que significa obtenir, ja que ens serveix per obtenir
 
 ###### this:
 La keyword this és una variable que fa referència a l'objecte actual de la classe, és a dir, a una instància concreta de la classe i ens serveix per a fer servir els mètodes i atributs d'aquesta classe des d'algun dels seus mètodes, per cridar a un altre dels seus constructors o simplement per passar l'objecte complet a algun altre mètode o objecte.
+
+
+###### super:
+
 
 ###### constructors:
 mètodes que tenen el mateix nom que la classe i es fan servir per a crear objectes d'aquella classe.
