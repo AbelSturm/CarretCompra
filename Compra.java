@@ -1,28 +1,62 @@
+/**
+ * @author Abel Sturm
+ * @date 04/03/2022
+ * @version 1.1
+ */
+
 package com.company;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
-
+/**
+ * Classe amb un programa per comprar en un supermercat, on es poden comprar diferenets porductes.
+ */
 public class Compra {
+	/**
+	 * La variable final NOM_SUPERMERCAT ens definira el nom del nostre supermercat.
+	 */
 	public static final String NOM_SUPERMERCAT = "SAPAMERCAT";
-	private static Scanner sc = new Scanner(System.in); 
-	
+	/**
+	 * La variable sc, ens permetra rebre input a traves del teclat.
+	 */
+	private static Scanner sc = new Scanner(System.in);
+
+	/**
+	 * Llista dels productes del nostre supermercat de tipus Alimentacio
+	 */
 	private List<Alimentacio> llista_ali;
+
+	/**
+	 * Llista dels productes del nostre supermercat de tipus Electronica
+	 */
 	private List<Electronica> llista_elec;
+
+	/**
+	 * Llista dels productes del nostre supermercat de tipus Textil
+	 */
 	private List<Textil> llista_textil;
 
+	/**
+	 * Constructor on assignem els productes a les arrays, privades, que utilitzarem.
+	 */
 	public Compra() {
 		llista_ali = new ArrayList<Alimentacio>();
 		llista_elec = new ArrayList<Electronica>();
 		llista_textil = new ArrayList<Textil>();
 	}
 
-	public static void main(String... args) {
+	/**
+	 * Funcio principal del porgrama, que iniciara els menus del programa i anirar cridant diferents funcions segons l'opcio del usuari.
+	 */
+	public static void iniciarCompra() {
+		/*
+		REFACT: He utilitzat el metode d'Extraccio de metode, per refactorizar aquesta funcio i executar el programa
+		des de la classe principal Main.class.
+		*/
 		int op,opP;
 		Compra compra = new Compra();
 
@@ -63,6 +97,10 @@ public class Compra {
 
 	}
 
+	/**
+	 * Funcio on mostrarem el menu d'incic, i retornara l'opcio que l'usuari tri-hi.
+	 * @return Ens retornara una variable de tipus int.
+	 */
 	public int menuPrincipal() {
 		int op;
 		System.out.println("------------");
@@ -77,6 +115,10 @@ public class Compra {
 		return op;
 	}
 
+	/**
+	 * Funcio on mostrarem el menu el producte, i etornara l'opcio que l'usuari tri-hi.
+	 * @return Ens retornara una variable de tipus int.
+	 */
 	public int menuProducte() {
 		int op;
 		System.out.println("---------------");
@@ -90,8 +132,10 @@ public class Compra {
 		op = Integer.parseInt(sc.nextLine());
 		return op;
 	}
-	
-	
+
+	/**
+	 * Funcio per afegir productes al nostre supermercat del tipus Aliment
+	 */
 	public void addAliment() {
 		String nom, codi;
 		float preu;
@@ -108,7 +152,10 @@ public class Compra {
 		LocalDate ld = readDate();
 		llista_ali.add(new Alimentacio(preu,nom,codi,ld));
 	}
-	
+
+	/**
+	 * Funcio per afegir productes al nostre supermercat del tipus Textil
+	 */
 	public void addTextil() {
 		String nom, compo, codi;
 		float preu;
@@ -124,7 +171,10 @@ public class Compra {
 		
 		llista_textil.add(new Textil(preu,nom,codi,compo));	
 	}
-	
+
+	/**
+	 * Funcio per afegir productes al nostre supermercat del tipus Electornica
+	 */
 	public void addElectronica() {
 		String nom,codi;
 		float preu;
@@ -141,8 +191,10 @@ public class Compra {
 		
 		llista_elec.add(new Electronica(preu,nom,codi,garantia));	
 	}
-	
-	//Llistar les tres llistes
+
+	/**
+	 * Funcio per llistar les tres llistes
+	 */
 	public void printCarret() {
 		Map<String,Integer> llista = new HashMap<>();
 
@@ -175,7 +227,10 @@ public class Compra {
 		}*/
 
 	}
-	
+
+	/**
+	 * Funcio per mostrar el import total del usuari al supermercat.
+	 */
 	public void passarCaixa() {
 		double total = 0;
 		Set<Alimentacio> ali_uniq = new HashSet<Alimentacio>(llista_ali);
@@ -216,6 +271,10 @@ public class Compra {
 		llista_textil.clear();
 	}
 
+	/**
+	 * Funcio que ens retornara la data que toca amb el format que toca.
+	 * @return Ens retorna una variable de tipus LocalDate.
+	 */
 	private LocalDate readDate() {
 		LocalDate d = null;
 		boolean dateOK = false;
@@ -233,6 +292,11 @@ public class Compra {
 		return d;
 	}
 
+	/**
+	 * Funcio que ens permetra obtindre el nom del producte segons el codiib.
+	 * @param codib Es una variable de tipus Stirng.
+	 * @return Ens retornara una variable de tipus Stirng.
+	 */
 	private String getNomProducte(String codib) {
 		//Mirem a les tres llistes
 		List<Producte> list = llista_ali.stream().filter(o -> o.getCodibarres().equals(codib)).distinct().collect(Collectors.toList());
@@ -241,7 +305,9 @@ public class Compra {
 		return list.get(0).getNom();
 	}
 
-	//mètode a realitzar per a la versió 2.1
+	/**
+	 * Funcio per comoparar preus. Mètode a realitzar per a la versió 2.1
+	 */
 	public void compararPreus(){
 		Compra compra = new Compra();	
 	}
